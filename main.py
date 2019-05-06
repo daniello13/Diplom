@@ -5,42 +5,14 @@ from OpenGL.GL import *
 from OpenGL.GLU import *
 
 verticies = (
-    (1, -1, -1),
-    (1, 1, -1),
-    (-1, 1, -1),
-    (-1, -1, -1),
-    (1, -1, 1),
-    (1, 1, 1),
-    (-1, -1, 1),
-    (-1, 1, 1),
-    #начало решетки, номера - номера точек
-    (0.33, -1, -1), #8
-    (0.33, 1, -1), #9
-    (-0.33, -1, -1), #10
-    (-0.33, 1, -1), #11
-    (-1, 0.33, -1), #12
-    (1, 0.33, -1), #13
-    (-1, -0.33, -1), #14
-    (1, -0.33, -1), #15
-    (0.33, -1, 1), #16
-    (0.33, 1, 1), #17
-    (-0.33, -1, 1), #18
-    (-0.33, 1, 1), #19
-    (-1, 0.33, 1), #20
-    (1, 0.33, 1), #21
-    (-1, -0.33, 1),#22
-    (1, -0.33, 1), #23
-
-    (1, -1, 0.33),#24
-    (1, 1, 0.33), #25
-    (1, -1, -0.33), #26
-    (1,1,-0.33), #27
-
-    (-1, -1, 0.33), #28
-    (-1, 1, 0.33), #29
-    (-1, -1, -0.33), #30
-    (-1, 1, -0.33) #31
-    
+    (0.3, -0.3, -0.3),
+    (0.3, 0.3, -0.3),
+    (-0.3, 0.3, -0.3),
+    (-0.3, -0.3, -0.3),
+    (0.3, -0.3, 0.3),
+    (0.3, 0.3, 0.3),
+    (-0.3, -0.3, 0.3),
+    (-0.3, 0.3, 0.3),
     )
 
 edges = (
@@ -55,42 +27,154 @@ edges = (
     (6,7),
     (5,1),
     (5,4),
-    (5,7),
-    (8, 9),
-    (10, 11),
-    (12,13),
-    (14,15),
-    (16,17),
-    (18,19),
-    (20, 21),
-    (22,23),
-    (8,16),
-    (9,17),
-    (10,18),
-    (11,19),
-    (12,20),
-    (13,21),
-    (14, 22),
-    (15, 23),
-    
-    (24, 25),
-    (26,27),
-    (28, 29),
-    (30, 31),
-    (24,28),
-    (25,29),
-    (26,30),
-    (27,31)
+    (5,7)
     )
 
 
 def Cube():
-    glBegin(GL_LINES)
+    '''
+    glBegin(GL_POLYGON|GL_QUADS)
     for edge in edges:
         for vertex in edge:
+            glColor3d(1,0,0)
             glVertex3fv(verticies[vertex])
     glEnd()
+    '''
+    # кубик №1
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3, -0.3)    # P1
+    glVertex3f( -0.3,  0.3, -0.3)     # P2
+    glVertex3f(  0.3,  0.3, -0.3)      # P3
+    glVertex3f(  0.3, -0.3, -0.3)       # P4
+    glEnd()
 
+    glBegin(GL_POLYGON)
+    glVertex3f(  0.3, -0.3, 0.3 )
+    glVertex3f(  0.3,  0.3, 0.3 )
+    glVertex3f( -0.3,  0.3, 0.3 )
+    glVertex3f( -0.3, -0.3, 0.3 )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f( 0.3, -0.3, -0.3 )
+    glVertex3f( 0.3,  0.3, -0.3 )
+    glVertex3f( 0.3,  0.3,  0.3 )
+    glVertex3f( 0.3, -0.3,  0.3 )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3,  0.3 )
+    glVertex3f( -0.3,  0.3,  0.3 )
+    glVertex3f( -0.3,  0.3, -0.3 )
+    glVertex3f( -0.3, -0.3, -0.3 )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f(  0.3,  0.3,  0.3 )
+    glVertex3f(  0.3,  0.3, -0.3 )
+    glVertex3f( -0.3,  0.3, -0.3 )
+    glVertex3f( -0.3,  0.3,  0.3 )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f(  0.3, -0.3, -0.3 )
+    glVertex3f(  0.3, -0.3,  0.3 )
+    glVertex3f( -0.3, -0.3,  0.3 )
+    glVertex3f( -0.3, -0.3, -0.3 )
+    glEnd()
+    
+    #2 кубик
+    #
+    #glVertex3f( 0.3, -0.3, -0.3 )
+    #glVertex3f( 0.3,  0.3, -0.3 )
+    #glVertex3f( 0.3,  0.3,  0.3 )
+    #glVertex3f( 0.3, -0.3,  0.3 )
+    glBegin(GL_POLYGON)
+    glColor3f(   1.0,  0.0,  0.0 )
+    glVertex3f( -0.3, -0.3, -0.5)    # P1
+    glVertex3f( -0.3,  0.3, -0.5)     # P2
+    glVertex3f(  0.3,  0.3, -0.5)      # P3
+    glVertex3f(  0.3, -0.3, -0.5)       # P4
+    glEnd()
+
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3, -1.1)    # P1
+    glVertex3f( -0.3,  0.3, -1.1)     # P2
+    glVertex3f(  0.3,  0.3, -1.1)      # P3
+    glVertex3f(  0.3, -0.3, -1.1)       # P4
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f( 0.3, -0.3, -0.5)    # P
+    glVertex3f(  0.3,  0.3, -0.5)      # P3
+    glVertex3f( 0.3,  0.3, -1.1) 
+    glVertex3f(  0.3, -0.3, -1.1)       # P4
+    glEnd()
+    #
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3, -0.5)    # P
+    glVertex3f(  -0.3,  0.3, -0.5)      # P3
+    glVertex3f( -0.3,  0.3, -1.1) 
+    glVertex3f(  -0.3, -0.3, -1.1)       # P4
+    glEnd()
+    #
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, 0.3, -0.5)    # P
+    glVertex3f(  0.3,  0.3, -0.5)      # P3
+    glVertex3f( 0.3,  0.3, -1.1) 
+    glVertex3f( -0.3, 0.3, -1.1)       # P4
+    glEnd()
+    #
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3, -0.5)    # P
+    glVertex3f(  0.3,  -0.3, -0.5)      # P3
+    glVertex3f( 0.3,  -0.3, -1.1) 
+    glVertex3f( -0.3, -0.3, -1.1)       # P4
+    glEnd()
+    # 3 кубик
+    glBegin(GL_POLYGON)
+    glColor3f(   1.0,  0.0,  0.0 )
+    glVertex3f( -0.3, -0.3, 0.5)    # P1
+    glVertex3f( -0.3,  0.3, 0.5)     # P2
+    glVertex3f(  0.3,  0.3, 0.5)      # P3
+    glVertex3f(  0.3, -0.3, 0.5)       # P4
+    glEnd()
+
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3, 1.1)    # P1
+    glVertex3f( -0.3,  0.3, 1.1)     # P2
+    glVertex3f(  0.3,  0.3, 1.1)      # P3
+    glVertex3f(  0.3, -0.3, 1.1)       # P4
+    glEnd()
+
+    #
+    glBegin(GL_POLYGON)
+    glVertex3f( 0.3, -0.3, 0.5)    # P
+    glVertex3f(  0.3,  0.3, 0.5)      # P3
+    glVertex3f( 0.3,  0.3, 1.1) 
+    glVertex3f(  0.3, -0.3, 1.1)       # P4
+    glEnd()
+    #
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3, 0.5)    # P
+    glVertex3f(  -0.3,  0.3, 0.5)      # P3
+    glVertex3f( -0.3,  0.3, 1.1) 
+    glVertex3f(  -0.3, -0.3, 1.1)       # P4
+    glEnd()
+    #
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, 0.3, 0.5)    # P
+    glVertex3f(  0.3,  0.3, 0.5)      # P3
+    glVertex3f( 0.3,  0.3, 1.1) 
+    glVertex3f( -0.3, 0.3, 1.1)       # P4
+    glEnd()
+    #
+    glBegin(GL_POLYGON)
+    glVertex3f( -0.3, -0.3, 0.5)    # P
+    glVertex3f(  0.3,  -0.3, 0.5)      # P3
+    glVertex3f( 0.3,  -0.3, 1.1) 
+    glVertex3f( -0.3, -0.3, 1.1)       # P4
+    glEnd()
 
 def main():
     pygame.init()
@@ -98,7 +182,7 @@ def main():
     pygame.display.set_mode(display, DOUBLEBUF|OPENGL)
     #glMatrixMode(GL_MODELVIEW)
     #glLoadIdentity()
-    gluPerspective(45, (display[0]/display[1]), 0.5, 50.0)
+    gluPerspective(45, (display[0]/display[1]), 0.3, 50.0)
     #gluLookAt(10, 10, 10, 0, 0, 0, 0, 100, 0)
     glTranslatef(0.0,0.0, -5)
 
@@ -107,7 +191,19 @@ def main():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
+        glEnable(GL_DEPTH_TEST)
+    # Принимать фрагменты которые ближе к камере
 
+        #light0_diffuse=(0.4, 0.7, 0.2)
+        #light0_direction = (4.0, 4.0, 4.0, 0.0)
+        glDepthFunc(GL_LESS)
+        
+        #glEnable(GL_LIGHTING)
+        #glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambient)
+        #glEnable(GL_LIGHT0)
+        #GL_POSITION=(3, 0,3,1)
+        #glLightfv(GL_LIGHT0, GL_DIFFUSE, light0_diffuse) 
+        #glLightfv(GL_LIGHT0, GL_POSITION, light0_direction)
         glRotatef(1, 3, 1, 1)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
         Cube()
