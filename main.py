@@ -31,7 +31,50 @@ edges = (
     (5,7)
     )
 
+def Cube_creation(x,y,z,length):
+    #x,y,z=-0.3 , 
+    glBegin(GL_POLYGON)
+    glVertex3f( x, y, z)    # P1
+    glVertex3f( x,  y+length, z)     # P2
+    glVertex3f(  x+length,  y+length, z)      # P3
+    glVertex3f(  x+length, y, z)       # P4
+    glEnd()
 
+    glBegin(GL_POLYGON)
+    glVertex3f(  x+length, y, z+length )
+    glVertex3f(  x+length,  y+length, z+length )
+    glVertex3f( x,  y+length, z+length )
+    glVertex3f( x, y, z+length )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f( x+length, y, z )
+    glVertex3f( x+length,  y+length, z )
+    glVertex3f( x+length,  y+length,  z+length )
+    glVertex3f( x+length, y,  z+length )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f( x, y,  z+length )
+    glVertex3f( x,  y+length,  z+length )
+    glVertex3f( x,  y+length, z )
+    glVertex3f( x, y, z )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f(  x+length,  y+length,  z+length )
+    glVertex3f(  x+length,  y+length, z )
+    glVertex3f( x,  y+length, z )
+    glVertex3f( x,  y+length,  z+length )
+    glEnd()
+    
+    glBegin(GL_POLYGON)
+    glVertex3f(  x+length, y, z )
+    glVertex3f(  x+length, y,  z+length )
+    glVertex3f( x, y,  z+length )
+    glVertex3f( x, y, z )
+    glEnd()
+    
 def Cube():
     '''
     glBegin(GL_POLYGON|GL_QUADS)
@@ -41,7 +84,7 @@ def Cube():
             glVertex3fv(verticies[vertex])
     glEnd()
     '''
-    
+    '''
     # кубик №1
     glBegin(GL_POLYGON)
     glVertex3f( -0.3, -0.3, -0.3)    # P1
@@ -519,6 +562,25 @@ def Cube():
     glVertex3f( 0.3,  1.1, 1.1 )
     glVertex3f( 0.3, 0.5, 1.1 )
     glEnd()
+    '''
+    edge_length=0.6
+    distance_between_small_cubes=0.2
+    z = -1.1
+    glColor3f(   1.0,  0.0,  0.0 )
+    coord = [-1.1,z+edge_length+distance_between_small_cubes,0.5]
+    for z in coord:
+        Cube_creation(-0.3,-0.3,z,edge_length) #A
+        Cube_creation( 0.5, -0.3, z , edge_length) #B
+        Cube_creation( -0.3, 0.5, z , edge_length) #C
+        Cube_creation(0.5,0.5,z, edge_length) #D
+        Cube_creation(-0.3,-1.1,z, edge_length )#E
+        Cube_creation(0.5, -1.1, z, edge_length)#F
+        Cube_creation(-1.1,0.5, z, edge_length) #G
+        Cube_creation(-1.1,-0.3,z,edge_length) #H
+        Cube_creation(-1.1, -1.1, z, edge_length) #I
+    
+    #`Cube_creation(-0.5, -0.5, -0.5, edge_length)
+    #Cube_creation()
 
 
 def keyboard (Key, x, y):
@@ -568,7 +630,7 @@ def main():
             glRotatef(1, 0, 0, 1)
         if motion == "up":
             glRotatef(1,1,0,0)
-        glRotatef(1, 3, 1, 1)
+        #glRotatef(1, 3, 1, 1)
         glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT)
 
         Cube()
